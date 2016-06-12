@@ -1,38 +1,23 @@
 #include <iostream>
 #include "Lexer.h"
+#include "JsonParser.h"
+#include "JsonConfigLoader.h"
 
-void wrongParameter();
-
-char *checkProgramArgument(int argc, char *const *argv);
-
-using namespace std;
+std::string checkProgramArgument(int argc, char *const *argv);
 
 int main(int argc, char* argv[]) {
+    std::string fileName = checkProgramArgument(argc, argv);
+    JsonConfigLoader jsonConfigLoader(fileName);
 
-    char* fileName;
-    fileName = checkProgramArgument(argc, argv);
-    Lexer lexer(fileName);
-    Token *token;
-    while(!lexer.isEOF()) {
-        token = lexer.getNextToken();
-        if(token != nullptr)
-            std::cout << token->toString() << std::endl << std::flush;
-    }
+    int number = jsonConfigLoader.getInt("size");
+    std::string text = jsonConfigLoader.getString("glossary.GlossDiv.GlossList.GlossEntry.GlossDef.GlossSeeAlso[1]");
 
     return 0;
 }
 
-char *checkProgramArgument(int argc, char *const *argv) {
-    char *fileName;
+std::string checkProgramArgument(int argc, char *const *argv) {
     if(argc == 2) {
-        fileName = argv[1];
-    } else {
-        wrongParameter();
+        return argv[1];
     }
-    return fileName;
-}
-
-void wrongParameter() {
-    cout << "Wrong program arguments.\nExiting.\n";
-    exit(0);
+    throw std::invalid_argument("Wrong program arguments");
 }

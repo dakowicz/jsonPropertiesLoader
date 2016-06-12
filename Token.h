@@ -13,9 +13,7 @@ public:
 
     Token(TokenType tokenType);
 
-    Token(TokenType tokenType, std::string text);
-
-    Token(TokenType tokenType, int number);
+    Token(TokenType tokenType, std::string value);
 
     ~Token();
 
@@ -23,12 +21,8 @@ public:
         return type;
     }
 
-    int getNumber() const {
-        return number;
-    }
-
-    const std::string &getText() const {
-        return text;
+    const std::string &getValue() const {
+        return value;
     }
 
     std::string toString();
@@ -37,9 +31,7 @@ private:
 
     TokenType type;
 
-    int number;
-
-    std::string text;
+    std::string value;
 };
 
 

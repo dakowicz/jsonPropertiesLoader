@@ -5,38 +5,36 @@
 #ifndef LEXER_LEXER_H
 #define LEXER_LEXER_H
 
-
 #include <iostream>
+#include <memory>
 #include <fstream>
 #include "Token.h"
-
 
 class Lexer {
 
 public:
-    Lexer(const char *fileName);
+
+    Lexer(std::string fileName);
 
     ~Lexer();
 
-    Token* getNextToken();
+    std::shared_ptr<Token> getNextToken();
 
     bool isOpen();
 
-    bool isEOF();
+    bool isEOF()const;
+
+    std::shared_ptr<Token> getCurrentToken() const { return currentToken; }
 
 private:
 
     std::ifstream fileDescriptor;
 
-    void printMessage(const char *message);
+    std::shared_ptr<Token> currentToken;
 
-    void printErrorMessage(const char *message);
+    void printMessage(std::string message);
 
-    void printChar(char c);
-
-    int getNumber(char i);
-
-    void skipWhiteSpaces(char &c);
+    std::string getNumber();
 
     std::string getText();
 
@@ -48,7 +46,11 @@ private:
 
     char currentChar;
 
-    void getNextChar(const Token *token);
+    void getNextChar(std::shared_ptr<Token> token);
+
+    void skipWhiteSpaces();
+
+    void printErrorMessage(std::string message);
 };
 
 

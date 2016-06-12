@@ -13,7 +13,9 @@ enum class TokenType {
     SEPARATOR = ',',
     LEFT_SQUARE_BRACKET = '[',
     RIGHT_SQUARE_BRACKET = ']',
+    DOT = '.',
 
+    MINUS = '-',
     NUMBER0 = '0',
     NUMBER1 = '1',
     NUMBER2 = '2',
@@ -24,11 +26,11 @@ enum class TokenType {
     NUMBER7 = '7',
     NUMBER8 = '8',
     NUMBER9 = '9',
-    NUMBER,
 
+    NUMBER = 'a',
     QUOTE = '"',
     ESCAPE_CHARACTER = '\\',
-    TEXT
+    TEXT = 'b',
 };
 
 
