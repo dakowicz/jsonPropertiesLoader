@@ -16,21 +16,14 @@ public:
     Node(std::string name, NodeType type, std::vector<std::shared_ptr<Node>> children = {}) :
             name(name), type(type), children(children) {}
 
-    std::vector<std::shared_ptr<Node>> getChildren();
+    std::vector<std::shared_ptr<Node>> getChildren() const { return children; }
 
-    std::shared_ptr<Node> getChildren(int index);
+    std::shared_ptr<Node> getChildren(int index) const { return children[index]; }
 
-    bool isVisited();
+    const std::string &getName() const { return name; }
 
-    void setVisited(bool value);
+    NodeType getType() const { return type; }
 
-    const std::string &getName() const {
-        return name;
-    }
-
-    NodeType getType() const {
-        return type;
-    }
 private:
 
     std::string name;

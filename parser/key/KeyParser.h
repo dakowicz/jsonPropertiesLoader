@@ -8,9 +8,9 @@
 #include <sstream>
 #include <vector>
 #include <queue>
-#include "Lexer.h"
-#include "KeyLexer.h"
-#include "Key.h"
+#include "../../lexer/json/JsonLexer.h"
+#include "../../lexer/key/KeyLexer.h"
+#include "../domain/Key.h"
 
 class KeyParser {
 public:

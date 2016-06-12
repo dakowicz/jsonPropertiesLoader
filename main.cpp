@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Lexer.h"
-#include "JsonParser.h"
-#include "JsonConfigLoader.h"
+#include "lexer/json/JsonLexer.h"
+#include "parser/json/JsonParser.h"
+#include "configLoader/JsonConfigLoader.h"
 
 std::string checkProgramArgument(int argc, char *const *argv);
 

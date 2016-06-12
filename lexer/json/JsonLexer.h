@@ -8,23 +8,21 @@
 #include <iostream>
 #include <memory>
 #include <fstream>
-#include "Token.h"
+#include "../domain/Token.h"
 
-class Lexer {
+class JsonLexer {
 
 public:
 
-    Lexer(std::string fileName);
+    JsonLexer(std::string fileName);
 
-    ~Lexer();
+    ~JsonLexer();
 
     std::shared_ptr<Token> getNextToken();
 
     bool isOpen();
 
     bool isEOF()const;
-
-    std::shared_ptr<Token> getCurrentToken() const { return currentToken; }
 
 private:
 

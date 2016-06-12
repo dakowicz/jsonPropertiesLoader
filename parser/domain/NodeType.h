@@ -7,11 +7,11 @@
 
 
 enum class NodeType {
-    OBJECT = 0,
-    ARRAY = 1,
-    PAIR = 2,
-    TEXT = 3,
-    NUMBER = 4
+    OBJECT,
+    ARRAY,
+    PAIR,
+    TEXT,
+    NUMBER
 };
 
 

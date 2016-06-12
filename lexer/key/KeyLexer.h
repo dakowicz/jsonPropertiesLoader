@@ -8,8 +8,8 @@
 #include <string>
 #include <memory>
 #include <iostream>
-#include "Key.h"
-#include "Token.h"
+#include "../../parser/domain/Key.h"
+#include "../domain/Token.h"
 
 class KeyLexer {
 public:

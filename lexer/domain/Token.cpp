@@ -5,19 +5,6 @@
 #include <iostream>
 #include "Token.h"
 
-Token::Token(TokenType tokenType) {
-    this->type = tokenType;
-}
-
-Token::Token(TokenType tokenType, std::string value) {
-    this->type = tokenType;
-    this->value = value;
-}
-
-Token::~Token() {
-
-}
-
 std::string Token::toString() {
     switch (type) {
         case TokenType::TEXT:
@@ -27,14 +14,3 @@ std::string Token::toString() {
             return std::string(1, (char)type);
     }
 }
-
-
-
-
-
-
-
-
-
-
-

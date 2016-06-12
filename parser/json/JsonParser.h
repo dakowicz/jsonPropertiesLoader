@@ -7,17 +7,17 @@
 
 #include <queue>
 #include <vector>
-#include "Lexer.h"
-#include "Node.h"
-#include "Key.h"
-#include "Pair.h"
-#include "Text.h"
-#include "Number.h"
+#include "../../lexer/json/JsonLexer.h"
+#include "../domain/Node.h"
+#include "../domain/Key.h"
+#include "../domain/Pair.h"
+#include "../domain/Text.h"
+#include "../domain/Number.h"
 
 class JsonParser {
 public:
 
-    JsonParser(std::string fileName) : lexer(fileName){
+    JsonParser(std::string fileName) : jsonLexer(fileName){
         rootNode = parseFile();
         if(isCompleted()){
             std::cout << PARSING_SUCCESS << std::endl;
@@ -26,11 +26,7 @@ public:
         }
     }
 
-    bool isCompleted() const { return lexer.isEOF(); }
-
-    ~JsonParser() {}
-
-    void printBFS();
+    bool isCompleted() const { return jsonLexer.isEOF(); }
 
     std::shared_ptr<Node> parseFile();
 
@@ -40,7 +36,7 @@ public:
 
 private:
 
-    Lexer lexer;
+    JsonLexer jsonLexer;
 
     std::shared_ptr<Token> currentToken;
 

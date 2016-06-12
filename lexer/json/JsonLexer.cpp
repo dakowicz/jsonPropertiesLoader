@@ -2,10 +2,10 @@
 // Created by tomasz on 23.05.16.
 //
 
-#include "Lexer.h"
-#include "TokenType.h"
+#include "JsonLexer.h"
+#include "../domain/TokenType.h"
 
-Lexer::Lexer(std::string fileName) {
+JsonLexer::JsonLexer(std::string fileName) {
     this->fileDescriptor.open(fileName);
     fileDescriptor.get(currentChar);
     if(isOpen()) {
@@ -15,11 +15,11 @@ Lexer::Lexer(std::string fileName) {
     }
 }
 
-Lexer::~Lexer() {
+JsonLexer::~JsonLexer() {
     fileDescriptor.close();
 }
 
-std::shared_ptr<Token> Lexer::getNextToken() {
+std::shared_ptr<Token> JsonLexer::getNextToken() {
     if(!isEOF()) {
 
         skipWhiteSpaces();
@@ -66,11 +66,11 @@ std::shared_ptr<Token> Lexer::getNextToken() {
     return currentToken;
 }
 
-void Lexer::getNextChar(std::shared_ptr<Token> token) {
+void JsonLexer::getNextChar(std::shared_ptr<Token> token) {
     fileDescriptor.get(currentChar);
 }
 
-void Lexer::checkWrongCharacter(char nextChar) {
+void JsonLexer::checkWrongCharacter(char nextChar) {
     if(isEOF()) {
         printMessage("The file has been processed completely");
     } else {
@@ -78,7 +78,7 @@ void Lexer::checkWrongCharacter(char nextChar) {
     }
 }
 
-std::string Lexer::getText() {
+std::string JsonLexer::getText() {
     char nextChar;
     std::string text = "";
 
@@ -91,7 +91,7 @@ std::string Lexer::getText() {
     return text;
 }
 
-std::string Lexer::getNumber() {
+std::string JsonLexer::getNumber() {
     std::string number = "";
     number += currentChar;
     while(fileDescriptor.get(currentChar) && isdigit(currentChar)) {
@@ -100,32 +100,32 @@ std::string Lexer::getNumber() {
     return number;
 }
 
-void Lexer::skipWhiteSpaces() {
+void JsonLexer::skipWhiteSpaces() {
     while(isspace(currentChar) && !isEOF()){
         fileDescriptor.get(currentChar);
     }
 }
 
-bool Lexer::isOpen() {
+bool JsonLexer::isOpen() {
     return this->fileDescriptor.is_open();
 }
 
-void Lexer::printErrorMessage(std::string message) {
+void JsonLexer::printErrorMessage(std::string message) {
     printMessage(message);
     exit(0);
 }
 
-void Lexer::printMessage(std::string message) {
+void JsonLexer::printMessage(std::string message) {
     std::cout << message << '\n';
 }
 
-bool Lexer::isEOF()const {
+bool JsonLexer::isEOF()const {
     return fileDescriptor.eof();
 }
 
-bool Lexer::isQuote(char &nextChar) const { return nextChar == (char) TokenType::QUOTE; }
+bool JsonLexer::isQuote(char &nextChar) const { return nextChar == (char) TokenType::QUOTE; }
 
-bool Lexer::isEscapeCharacter(char &nextChar) const {
+bool JsonLexer::isEscapeCharacter(char &nextChar) const {
     return nextChar == (char) TokenType::ESCAPE_CHARACTER;
 }
 

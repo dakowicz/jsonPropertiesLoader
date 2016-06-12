@@ -5,9 +5,9 @@
 #ifndef LEXER_KEY_H
 #define LEXER_KEY_H
 
-static const int DEFAULT_INDEX = -1;
-
 #include <string>
+
+const int DEFAULT_INDEX = -1;
 
 class Key {
 public:

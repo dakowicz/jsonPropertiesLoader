@@ -5,8 +5,8 @@
 #ifndef LEXER_JSONCONFIGLOADER_H
 #define LEXER_JSONCONFIGLOADER_H
 
-#include "JsonParser.h"
-#include "KeyParser.h"
+#include "../parser/json/JsonParser.h"
+#include "../parser/key/KeyParser.h"
 
 
 class JsonConfigLoader {

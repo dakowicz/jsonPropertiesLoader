@@ -11,19 +11,11 @@
 class Token {
 public:
 
-    Token(TokenType tokenType);
+    Token(TokenType tokenType, std::string value = "") : type(tokenType), value(value) {}
 
-    Token(TokenType tokenType, std::string value);
+    TokenType getType() const { return type; }
 
-    ~Token();
-
-    TokenType getType() const {
-        return type;
-    }
-
-    const std::string &getValue() const {
-        return value;
-    }
+    const std::string &getValue() const { return value; }
 
     std::string toString();
 

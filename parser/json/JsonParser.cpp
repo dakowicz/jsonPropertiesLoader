@@ -3,8 +3,8 @@
 //
 
 #include "JsonParser.h"
-#include "Object.h"
-#include "Array.h"
+#include "../domain/Object.h"
+#include "../domain/Array.h"
 
 const std::string JsonParser::PARSING_ERROR("Json parsing error");
 
@@ -140,25 +140,7 @@ std::shared_ptr<Node> JsonParser::findNodeDFS(std::shared_ptr<Node> currentNode,
 }
 
 void JsonParser::getNextToken() {
-    currentToken = lexer.getNextToken();
-}
-
-void JsonParser::printBFS() {
-    std::queue<std::shared_ptr<Node>> q;
-    q.push(rootNode);
-
-    while (!q.empty()) {
-        std::shared_ptr<Node> &current = q.front();
-        q.pop();
-        std::cout << current->getName() << std::endl;
-
-        for (auto &child : current->getChildren()) {
-            if (!child->isVisited()) {
-                child->setVisited(true);
-                q.push(child);
-            }
-        }
-    }
+    currentToken = jsonLexer.getNextToken();
 }
 
 std::shared_ptr<Node> JsonParser::getChildren(const std::shared_ptr<Key> &currentKey, const std::shared_ptr<Node> &childArray) const {
